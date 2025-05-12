@@ -1,4 +1,4 @@
-const app = require('./server.js');
+const app = require('./app.js');
 
 app.post('api/create/user', (req, res) =>{
     
