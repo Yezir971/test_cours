@@ -1,6 +1,6 @@
 const app = require('./app.js');
 const bcrypt = require('bcrypt');
-let user_json = [{}]
+let user_json = require('./datas.js')
 
 const create = async (req, res, next) => {
     // const id = req.body.nom;

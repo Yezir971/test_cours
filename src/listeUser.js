@@ -1,6 +1,8 @@
-const app = require("./server.js")
+let users = require('./datas.js')
+
+
 const listUsers = (req, res) => {
   res.status(200).json(users);
 };
 
-module.exports = listUsers;
+module.exports = {listUsers};
