@@ -4,7 +4,7 @@ const user_json = require('./datas.js');
 
 const create = async (req, res, next) => {
     // const id = req.body.nom;
-    const id = user_json.datas.length + 1;
+    const id = user_json.data.length + 1;
     const name = req.body.name;
     const email = req.body.email;
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -20,20 +20,20 @@ const create = async (req, res, next) => {
         return;
     }
 
-    if (user_json.datas.find(user => user.email === email)) {
+    if (user_json.data.find(user => user.email === email)) {
         res.status(409).send('Email déjà utilisé');
         console.log('Email déjà utilisé');
         return;
     }
 
-    user_json.datas.push({
+    user_json.data.push({
         id: id,
         name: name.toString(),
         email: email.toString(),
         password: hashedPassword
     });
 
-    console.log(user_json.datas);
+    console.log(user_json.data);
 
     res.status(200).send({ message: 'Utilisateur créé avec succès' });
 }

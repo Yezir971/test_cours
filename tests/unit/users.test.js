@@ -15,7 +15,7 @@ describe('Création d\'un utilisateur', () => {
     beforeEach(() => {
         jest.clearAllMocks();
         // Sauvegarde une copie des données originales
-        userData.datas = [
+        userData.data = [
             { id: 1, name: "gérard", email: "gerard@example.com", password: "gerardd123" },
             { id: 2, name: "jeanne", email: "jeanne@example.com", password: "jeanne123" },
             { id: 3, name: "loco", email: "loco@example.com", password: "loco123" }
@@ -49,10 +49,10 @@ describe('Création d\'un utilisateur', () => {
         expect(bcrypt.hash).toHaveBeenCalledWith('password123!', 10);
 
         // Vérifier que l'utilisateur a été ajouté aux données
-        expect(userData.datas.length).toBe(4);
-        expect(userData.datas[3].name).toBe('John Doe');
-        expect(userData.datas[3].email).toBe('john@example.com');
-        expect(userData.datas[3].password).toBe('hashed_password');
+        expect(userData.data.length).toBe(4);
+        expect(userData.data[3].name).toBe('John Doe');
+        expect(userData.data[3].email).toBe('john@example.com');
+        expect(userData.data[3].password).toBe('hashed_password');
     });
 
     test('devrait renvoyer une erreur 409 si des valeurs sont manquantes', async () => {
