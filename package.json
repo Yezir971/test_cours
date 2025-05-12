@@ -17,5 +17,15 @@
     "knex": "^3.1.0",
     "sqlite3": "^5.1.7",
     "supertest": "^7.1.1"
-  }
+  },
+  "name": "test_cours",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
