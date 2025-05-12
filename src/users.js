@@ -9,7 +9,8 @@ const create = async (req, res, next) => {
     const email = req.body.email;
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     if (!name || !email || !req.body.password) {
-        res.status(500).send('value null')
+        res.status(500).send('value null');
+        return;
     }
     console.log('groooooooosssse galere');
 
