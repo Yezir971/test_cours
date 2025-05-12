@@ -1,20 +1,41 @@
 const app = require('./app.js');
 const bcrypt = require('bcrypt');
-let user_json = [{}]
+const user_json = require('./datas.js');
 
 const create = async (req, res, next) => {
     // const id = req.body.nom;
-    const id = user_json.length;
+    const id = user_json.datas.length + 1;
     const name = req.body.name;
     const email = req.body.email;
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     if (!name || !email || !req.body.password) {
-        res.status(500).send('value null');
+        res.status(409).send('Valeurs manquantes');
+        console.log('Valeurs manquantes');
         return;
     }
-    console.log('groooooooosssse galere');
 
-    res.status(200).send('user created');
+    if (req.body.password.length < 8 || !/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(req.body.password)) {
+        res.status(409).send('Le mot de passe doit contenir au moins 8 caractères et au moins un caractère spécial');
+        console.log('Le mot de passe doit contenir au moins 8 caractères et au moins un caractère spécial');
+        return;
+    }
+
+    if (user_json.datas.find(user => user.email === email)) {
+        res.status(409).send('Email déjà utilisé');
+        console.log('Email déjà utilisé');
+        return;
+    }
+
+    user_json.datas.push({
+        id: id,
+        name: name.toString(),
+        email: email.toString(),
+        password: hashedPassword
+    });
+
+    console.log(user_json.datas);
+
+    res.status(200).send({ message: 'Utilisateur créé avec succès' });
 }
 
 module.exports = { create };
